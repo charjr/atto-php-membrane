@@ -26,17 +26,17 @@ final class RequestProblemHandlerTest extends \PHPUnit\Framework\TestCase
     public static function provideErrorsToHandle(): \Generator
     {
         yield 'path not found' => [
-            new ApiProblem('Not found', 'about:blank')->setStatus(404),
+            (new ApiProblem('Not found', 'about:blank'))->setStatus(404),
             CannotProcessSpecification::pathNotFound('api.yml', '/pets'),
         ];
 
         yield 'method not found' => [
-            new ApiProblem('Method unsupported', 'about:blank')->setStatus(405),
+            (new ApiProblem('Method unsupported', 'about:blank'))->setStatus(405),
             CannotProcessSpecification::methodNotFound( 'DELETE'),
         ];
 
         yield 'bad request' => [
-            new ApiProblem('Bad Request', 'about:blank')->setStatus(400),
+            (new ApiProblem('Bad Request', 'about:blank'))->setStatus(400),
             new \RuntimeException(),
         ];
     }
